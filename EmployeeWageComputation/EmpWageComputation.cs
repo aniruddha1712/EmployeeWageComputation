@@ -12,13 +12,15 @@ namespace EmployeeWageComputation
             public const int IS_PART_TIME = 2;
             public const int EMP_RATE_PER_HR = 20;
             public const int NUM_OF_WORKING_DAYS = 20;
+            public const int MAX_WORKING_HRS = 100;
 
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage Computation Program");
-            int empHrs = 0 ,  empWage = 0, totalEmpWage=0;
+            int empHrs = 0, empWage = 0, totalWorkingHrs = 0, totalWorkingDays=1 ; 
 
-            for (int day = 1; day <= NUM_OF_WORKING_DAYS; day++)
+            while ( totalWorkingDays <= NUM_OF_WORKING_DAYS && totalWorkingHrs <= MAX_WORKING_HRS)
+
             {
                 Random random = new Random();
                 int empCheck = random.Next(0, 3);
@@ -34,11 +36,17 @@ namespace EmployeeWageComputation
                         empHrs = 0;
                         break;
                 }
-                empWage = EMP_RATE_PER_HR * empHrs;
-                Console.WriteLine("Employee wage for day{0} is :{1}",day, empWage);
-                totalEmpWage += empWage;
+                totalWorkingHrs += empHrs;
+                if(totalWorkingHrs>MAX_WORKING_HRS)
+                {
+                    totalWorkingHrs -= empHrs;
+                    break;
+                }
+                Console.WriteLine("day: " + totalWorkingDays + " working hrs: "+empHrs);
+                totalWorkingDays++;
             }
-            Console.WriteLine("Total employee wage: {0}", totalEmpWage);
+            int totalEmpWage = totalWorkingHrs * EMP_RATE_PER_HR;
+            Console.WriteLine("Employee had worked for {0} hrs in {1} days and earned {2} rs",totalWorkingHrs,totalWorkingDays-1,totalEmpWage);
             Console.ReadLine();
         } 
     }   
