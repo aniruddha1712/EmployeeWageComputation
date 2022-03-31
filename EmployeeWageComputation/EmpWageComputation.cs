@@ -8,18 +8,18 @@ namespace EmployeeWageComputation
 {
     class EmpWageComputation
     {
-            public const int IS_FULL_TIME = 1;
-            public const int IS_PART_TIME = 2;
-            public const int EMP_RATE_PER_HR = 20;
-            public const int NUM_OF_WORKING_DAYS = 20;
-            public const int MAX_WORKING_HRS = 100;
+        public const int IS_FULL_TIME = 1;
+        public const int IS_PART_TIME = 2;
+        public const int EMP_RATE_PER_HR = 20;
+        public const int NUM_OF_WORKING_DAYS = 20;
+        public const int MAX_WORKING_HRS = 100;
 
-        static void Main(string[] args)
+        public static void ComputeEmpWage()
         {
             Console.WriteLine("Welcome to Employee Wage Computation Program");
-            int empHrs = 0, empWage = 0, totalWorkingHrs = 0, totalWorkingDays=1 ; 
+            int empHrs = 0, empWage = 0, totalWorkingHrs = 0, totalWorkingDays = 1;
 
-            while ( totalWorkingDays <= NUM_OF_WORKING_DAYS && totalWorkingHrs <= MAX_WORKING_HRS)
+            while (totalWorkingDays <= NUM_OF_WORKING_DAYS && totalWorkingHrs <= MAX_WORKING_HRS)
 
             {
                 Random random = new Random();
@@ -37,17 +37,22 @@ namespace EmployeeWageComputation
                         break;
                 }
                 totalWorkingHrs += empHrs;
-                if(totalWorkingHrs>MAX_WORKING_HRS)
+                if (totalWorkingHrs > MAX_WORKING_HRS)
                 {
                     totalWorkingHrs -= empHrs;
                     break;
                 }
-                Console.WriteLine("day: " + totalWorkingDays + " working hrs: "+empHrs);
+                Console.WriteLine("day: " + totalWorkingDays + " working hrs: " + empHrs);
                 totalWorkingDays++;
             }
             int totalEmpWage = totalWorkingHrs * EMP_RATE_PER_HR;
-            Console.WriteLine("Employee had worked for {0} hrs in {1} days and earned {2} rs",totalWorkingHrs,totalWorkingDays-1,totalEmpWage);
+            Console.WriteLine("Employee had worked for {0} hrs in {1} days and earned {2} rs", totalWorkingHrs, totalWorkingDays - 1, totalEmpWage);
             Console.ReadLine();
-        } 
-    }   
+        }
+        static void Main(string[] args)
+        {
+            ComputeEmpWage();
+        }
+    }
 }
+         
