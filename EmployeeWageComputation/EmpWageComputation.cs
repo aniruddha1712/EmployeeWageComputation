@@ -18,6 +18,9 @@ namespace EmployeeWageComputation
             empWageBuilder.addCompanyEmpWage("Mahindra", 30, 22, 90);
             empWageBuilder.addCompanyEmpWage("Nvidia", 40, 25, 100);
             empWageBuilder.computeEmpWage();
+            Console.WriteLine("Find total Emp wage by company name:Enter company name....");
+            string comp=Console.ReadLine();
+            Console.WriteLine("total emp wage for "+comp+" is "+empWageBuilder.getTotalWage(comp));
 
             Console.ReadLine();
         }

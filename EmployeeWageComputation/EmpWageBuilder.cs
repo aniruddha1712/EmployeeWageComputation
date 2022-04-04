@@ -6,21 +6,23 @@ using System.Threading.Tasks;
 
 namespace EmployeeWageComputation
 {
-    class EmpWageBuilder
+    class EmpWageBuilder:IComputeEmpWage
     {
         public const int IS_FULL_TIME = 1;
         public const int IS_PART_TIME = 2;
 
-        private int numOfCompany = 0;
         private List<CompanyEmpWage> companyEmpWageList;
+        private Dictionary<string, CompanyEmpWage> companyEmpWageDict;
         public EmpWageBuilder()
         {
             this.companyEmpWageList = new List<CompanyEmpWage>();
+            this.companyEmpWageDict = new Dictionary<string, CompanyEmpWage>();
         }
         public void addCompanyEmpWage(string company, int empRatePerHr, int numOfWorkingDays, int maxWorkingHrs)
         {
             CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, empRatePerHr, numOfWorkingDays, maxWorkingHrs);
             this.companyEmpWageList.Add(companyEmpWage);
+            this.companyEmpWageDict.Add(company, companyEmpWage);
         }
        
         public void computeEmpWage()
@@ -63,6 +65,10 @@ namespace EmployeeWageComputation
                 totalWorkingDays++;
             }
             return totalWorkingHrs * companyEmpWage.empRatePerHr;
+        }
+        public int getTotalWage(string company)
+        {
+            return this.companyEmpWageDict[company].totalEmpWage;
         }
     }
 }
