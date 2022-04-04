@@ -6,29 +6,29 @@ using System.Threading.Tasks;
 
 namespace EmployeeWageComputation
 {
-    class EmpWageArray
+    class EmpWageBuilder
     {
         public const int IS_FULL_TIME = 1;
         public const int IS_PART_TIME = 2;
 
         private int numOfCompany = 0;
-        private CompanyEmpWage[] companyEmpWageArray;
-        public EmpWageArray()
+        private List<CompanyEmpWage> companyEmpWageList;
+        public EmpWageBuilder()
         {
-            this.companyEmpWageArray = new CompanyEmpWage[5];
+            this.companyEmpWageList = new List<CompanyEmpWage>();
         }
         public void addCompanyEmpWage(string company, int empRatePerHr, int numOfWorkingDays, int maxWorkingHrs)
         {
-            companyEmpWageArray[this.numOfCompany] = new CompanyEmpWage(company, empRatePerHr, numOfWorkingDays, maxWorkingHrs);
-            numOfCompany++;
+            CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, empRatePerHr, numOfWorkingDays, maxWorkingHrs);
+            this.companyEmpWageList.Add(companyEmpWage);
         }
        
         public void computeEmpWage()
         {
-            for (int i = 0; i < numOfCompany; i++)
+            foreach(CompanyEmpWage companyEmpWage in this.companyEmpWageList)
             {
-                companyEmpWageArray[i].setTotalWage(this.ComputeEmpWage(this.companyEmpWageArray[i]));
-                Console.WriteLine(this.companyEmpWageArray[i].toString());
+                companyEmpWage.setTotalWage(this.ComputeEmpWage(companyEmpWage));
+                Console.WriteLine(companyEmpWage.toString());
 
             }
         }

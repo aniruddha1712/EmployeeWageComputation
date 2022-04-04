@@ -13,11 +13,11 @@ namespace EmployeeWageComputation
         {
             Console.WriteLine("Welcome to Employee Wage Computation Program");
 
-            EmpWageArray empWageArray = new EmpWageArray();
-            empWageArray.addCompanyEmpWage("Dmart", 25, 20, 80);
-            empWageArray.addCompanyEmpWage("Mahindra", 30, 22, 90);
-            empWageArray.addCompanyEmpWage("Nvidia", 40, 25, 100);
-            empWageArray.computeEmpWage();
+            EmpWageBuilder empWageBuilder = new EmpWageBuilder();
+            empWageBuilder.addCompanyEmpWage("Dmart", 25, 20, 80);
+            empWageBuilder.addCompanyEmpWage("Mahindra", 30, 22, 90);
+            empWageBuilder.addCompanyEmpWage("Nvidia", 40, 25, 100);
+            empWageBuilder.computeEmpWage();
 
             Console.ReadLine();
         }
